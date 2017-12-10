@@ -1,1 +1,1 @@
-*/5 * * * * /volume-backup.sh backup nextcloud-backup >> /var/log/volume-backup.log
+0 0 * * * /volume-backup.sh backup nextcloud-backup >> /var/log/volume-backup.log

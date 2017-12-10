@@ -1,5 +1,9 @@
 FROM arm32v6/alpine
 
-COPY volume-backup.sh /
+ADD crontab.txt /crontab.txt
+ADD volume-backup.sh /volume-backup.sh
+COPY entry.sh /entry.sh
+RUN chmod 755 /volume-backup.sh /entry.sh
+RUN /usr/bin/crontab /crontab.txt
 
-ENTRYPOINT [ "/bin/sh", "/volume-backup.sh" ]
+CMD ["/entry.sh"]

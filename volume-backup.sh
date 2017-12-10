@@ -6,8 +6,10 @@ usage() {
 }
 
 backup() {
+  echo "starting backup"
     mkdir -p `dirname /backup/$ARCHIVE`
     tar -cjf /backup/$ARCHIVE -C /volume ./
+    echo "Backup completed"
 }
 
 restore() {
@@ -29,9 +31,11 @@ if [ $# -ne 2 ]; then
     usage
 fi
 
+DATE=`date +%Y-%m-%d`
+
 OPERATION=$1
 
-ARCHIVE=${2%%.tar.bz2}.tar.bz2
+ARCHIVE=${2%%.tar.bz2}.$DATE.tar.bz2
 
 case "$OPERATION" in
 "backup" )
